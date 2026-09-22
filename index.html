@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTS WORLD | ทำความรู้จัก BTS และเส้นทางแห่งความสำเร็จ</title>
+    <meta name="description" content="เว็บไซต์แนะนำ BTS สมาชิก ผลงานเพลง อัลบั้ม Timeline ความสำเร็จ และเรื่องราวที่น่าสนใจ จัดทำโดย นางสาวดิยานะฮ์ เฟื่องปัญญา">
+    <meta name="keywords" content="BTS, Bangtan Sonyeondan, 방탄소년단, BTS Thailand, K-POP, ARMY, BTS Members, BTS Music, BTS Albums">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'Noto Sans Thai', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4B0082', // Dark Purple
+                        accent: '#FF69B4', // Soft Pink
+                        dark: '#0F0F1A',
+                        light: '#F8F9FA',
+                        electric: '#00FFFF', // Electric Blue
+                        lavender: '#E6E6FA',
+                    },
+                    backgroundImage: {
+                        'gradient-bts': 'linear-gradient(to right, #4B0082, #00008B, #FF69B4)',
+                        'glass': 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        body { background-color: #050505; color: #ffffff; overflow-x: hidden; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .hover-scale { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-scale:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(75, 0, 130, 0.5); }
+        .text-gradient {
+            background: linear-gradient(to right, #b28dff, #ffb6c1, #8fe0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .neon-glow { text-shadow: 0 0 10px rgba(178, 141, 255, 0.8), 0 0 20px rgba(255, 182, 193, 0.6); }
+        .timeline-line::before {
+            content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, #4B0082, #FF69B4); transform: translateX(-50%);
+        }
+        @media (max-width: 768px) {
+            .timeline-line::before { left: 20px; transform: none; }
+            .timeline-item { width: 100% !important; padding-left: 50px !important; text-align: left !important; }
+            .timeline-dot { left: 20px !important; transform: translateX(-50%) !important; }
+        }
+        .fade-in-up { animation: fadeInUp 0.8s ease forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        /* Light mode adjustments */
+        .light-mode { background-color: #f0f2f5; color: #1a1a1a; }
+        .light-mode .glass-card { background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.1); color: #333; }
+        .light-mode .text-gradient { background: linear-gradient(to right, #4B0082, #00008B); -webkit-background-clip: text; }
+        .light-mode .timeline-line::before { background: #4B0082; }
+        
+        /* Modal & Lightbox */
+        #modal-overlay, #lightbox { transition: opacity 0.3s ease; backdrop-filter: blur(5px); }
+        .hide-scroll { overflow: hidden; }
+        .song-play-button { cursor: pointer; }
+
+        
+        /* Particles bg - ใส่ภาพที่ให้มาเป็นพื้นหลัง Hero Section */
+        #particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: url('https://dynamicmedia.livenationinternational.com/u/f/c/9550d5b0-a658-4c4c-a893-8afe4ec2dd4d.jpg') center/cover; opacity: 0.25; filter: grayscale(30%) contrast(1.2); }
+    </style>
+</head>
+<body class="antialiased transition-colors duration-300 relative">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4">
+        <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-widest text-gradient">BTS WORLD</a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+                <a href="#home" class="hover:text-accent transition">หน้าแรก</a>
+                <a href="#about" class="hover:text-accent transition">รู้จัก BTS</a>
+                <a href="#members" class="hover:text-accent transition">สมาชิก</a>
+                <a href="#music" class="hover:text-accent transition">ผลงานเพลง</a>
+                <a href="#albums" class="hover:text-accent transition">อัลบั้ม</a>
+                <a href="#timeline" class="hover:text-accent transition">Timeline</a>
+                <a href="#army" class="hover:text-accent transition">ARMY</a>
+                <a href="#quiz" class="hover:text-accent transition">Quiz</a>
+                <a href="#creator" class="hover:text-accent transition">ผู้จัดทำ</a>
+                <button onclick="toggleSearch()" class="hover:text-accent transition"><i class="fas fa-search"></i></button>
+                <button onclick="toggleTheme()" class="hover:text-accent transition"><i class="fas fa-moon" id="theme-icon"></i></button>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <div class="lg:hidden flex items-center space-x-4">
+                <button onclick="toggleSearch()" class="hover:text-accent"><i class="fas fa-search"></i></button>
+                <button onclick="toggleMobileMenu()" class="text-2xl"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full glass-card flex flex-col space-y-4 p-6 text-center border-t border-white/10 lg:hidden">
+            <a href="#home" class="hover:text-accent" onclick="toggleMobileMenu()">หน้าแรก</a>
+            <a href="#about" class="hover:text-accent" onclick="toggleMobileMenu()">รู้จัก BTS</a>
+            <a href="#members" class="hover:text-accent" onclick="toggleMobileMenu()">สมาชิก</a>
+            <a href="#music" class="hover:text-accent" onclick="toggleMobileMenu()">ผลงานเพลง/อัลบั้ม</a>
+            <a href="#timeline" class="hover:text-accent" onclick="toggleMobileMenu()">Timeline</a>
+            <a href="#quiz" class="hover:text-accent" onclick="toggleMobileMenu()">Quiz</a>
+            <a href="#creator" class="hover:text-accent" onclick="toggleMobileMenu()">ผู้จัดทำ</a>
+            <button onclick="toggleTheme()" class="mt-2"><i class="fas fa-moon" id="mobile-theme-icon"></i> สลับโหมดสี</button>
+        </div>
+    </nav>
+
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="fixed inset-0 bg-black/90 z-[60] hidden flex-col justify-center items-center px-4">
+        <button onclick="toggleSearch()" class="absolute top-8 right-8 text-3xl"><i class="fas fa-times"></i></button>
+        <div class="w-full max-w-2xl">
+            <input type="text" id="search-input" placeholder="ค้นหาสมาชิก เพลง อัลบั้ม หรือเรื่องราวของ BTS..." class="w-full bg-transparent border-b-2 border-primary text-2xl md:text-4xl py-4 text-white focus:outline-none focus:border-accent transition">
+            <button onclick="performSearch()" class="mt-8 px-8 py-3 bg-gradient-bts rounded-full font-bold hover:scale-105 transition w-full md:w-auto">ค้นหา</button>
+            <p id="search-result" class="mt-4 text-accent hidden"></p>
+        </div>
+    </div>
+
+    <!-- 2. HERO SECTION -->
+    <header id="home" class="relative h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-20">
+        <div id="particles"></div>
+        <div class="relative z-10 max-w-4xl mx-auto fade-in-up">
+            <h2 class="text-xl md:text-3xl text-accent mb-2 tracking-widest font-bold">방탄소년단</h2>
+            <h1 class="text-6xl md:text-8xl font-black mb-4 text-gradient neon-glow tracking-tighter">BTS</h1>
+            <h3 class="text-xl md:text-2xl mb-6 tracking-widest font-light">BEYOND THE SCENE</h3>
+            <p class="text-lg md:text-xl mb-4 font-light">“7 สมาชิก 1 ความฝัน และเรื่องราวที่เดินทางไปไกลทั่วโลก”</p>
+            <p class="text-sm md:text-base text-gray-300 mb-10 max-w-2xl mx-auto">“ทำความรู้จักวง BTS ผ่านเรื่องราว สมาชิก เพลง อัลบั้ม และเส้นทางแห่งความสำเร็จ”</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#about" class="px-8 py-3 rounded-full bg-gradient-bts text-white font-bold hover-scale shadow-lg shadow-purple-500/50">เริ่มสำรวจ BTS</a>
+                <a href="#members" class="px-8 py-3 rounded-full glass-card font-bold hover:bg-white/20 transition">รู้จักสมาชิกทั้ง 7 คน</a>
+            </div>
+            
+            <p class="mt-16 text-sm text-gray-400">จัดทำโดย นางสาวดิยานะฮ์ เฟื่องปัญญา</p>
+        </div>
+        <!-- Scroll indicator -->
+        <a href="#about" class="absolute bottom-10 animate-bounce text-2xl opacity-70 hover:opacity-100 transition"><i class="fas fa-chevron-down"></i></a>
+    </header>
+
+    <!-- 3. ABOUT BTS -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h4 class="text-accent tracking-widest text-sm font-bold">ABOUT BTS</h4>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2">รู้จัก BTS</h2>
+                <div class="w-24 h-1 bg-gradient-bts mx-auto mt-4 rounded"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="glass-card p-8 rounded-2xl fade-in-up" style="animation-delay: 0.2s;">
+                    <p class="mb-4 leading-relaxed">“BTS หรือ Bangtan Sonyeondan (방탄소년단) เป็นกลุ่มศิลปินจากประเทศเกาหลีใต้ที่เดบิวต์ในเดือนมิถุนายน ค.ศ. 2013 สมาชิกประกอบด้วย RM, Jin, SUGA, j-hope, Jimin, V และ Jung Kook”</p>
+                    <p class="mb-4 leading-relaxed">“BTS เป็นที่รู้จักจากดนตรีที่สะท้อนเรื่องราวของวัยรุ่น ความฝัน ความรัก การเติบโต การค้นหาตัวเอง และการใช้ชีวิต พวกเขาได้รับการยอมรับจากทั้งผลงานเพลง การแสดง และการสื่อสารกับแฟนคลับทั่วโลก”</p>
+                    <p class="mb-4 leading-relaxed">“ชื่อ BTS มาจาก Bangtan Sonyeondan และมีการใช้ความหมายภาษาอังกฤษว่า Beyond The Scene ในการสร้างภาพลักษณ์ของวงในระดับสากล”</p>
+                    <p class="leading-relaxed">“แฟนคลับของ BTS มีชื่อว่า ARMY ซึ่งเป็นชุมชนแฟนเพลงระดับโลกที่มีบทบาทสำคัญในการสนับสนุนผลงานของวง”</p>
+                </div>
+                
+                <div class="fade-in-up" style="animation-delay: 0.4s;">
+                    <!-- ใส่ภาพจริงที่ให้มาตรงนี้ -->
+                    <img src="https://dynamicmedia.livenationinternational.com/u/f/c/9550d5b0-a658-4c4c-a893-8afe4ec2dd4d.jpg" alt="BTS Group" class="rounded-2xl shadow-2xl hover-scale w-full object-cover">
+                </div>
+            </div>
+
+            <!-- About Infographic -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-center fade-in-up">
+                <div class="glass-card p-6 rounded-xl border-t-4 border-t-primary"><h3 class="text-2xl font-bold text-accent">2013</h3><p class="text-sm">DEBUT</p></div>
+                <div class="glass-card p-6 rounded-xl border-t-4 border-t-blue-500"><h3 class="text-2xl font-bold text-blue-400">2017</h3><p class="text-sm">LOVE YOURSELF</p></div>
+                <div class="glass-card p-6 rounded-xl border-t-4 border-t-accent"><h3 class="text-2xl font-bold text-accent">2020</h3><p class="text-sm">DYNAMITE (Billboard #1)</p></div>
+                <div class="glass-card p-6 rounded-xl border-t-4 border-t-primary"><h3 class="text-2xl font-bold text-purple-400">2022</h3><p class="text-sm">PROOF (Anthology)</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. MEMBERS -->
+    <section id="members" class="py-20 bg-black/50 relative">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h4 class="text-accent tracking-widest text-sm font-bold">MEMBERS</h4>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2">สมาชิก BTS ทั้ง 7 คน</h2>
+                <div class="w-24 h-1 bg-gradient-bts mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="member-grid">
+                <!-- Members will be injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TIMELINE -->
+    <section id="timeline" class="py-20 relative">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h4 class="text-accent tracking-widest text-sm font-bold">BTS TIMELINE</h4>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2">เส้นทางจากเด็กฝึกสู่ศิลปินระดับโลก</h2>
+                <div class="w-24 h-1 bg-gradient-bts mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="relative timeline-line max-w-4xl mx-auto py-10">
+                <!-- Timeline items -->
+                <div class="flex justify-between items-center w-full mb-8 relative timeline-item fade-in-up">
+                    <div class="w-5/12 text-right pr-8 hidden md:block">
+                        <h3 class="text-2xl font-bold text-accent">2013 — DEBUT</h3>
+                        <p class="text-sm text-gray-300 mt-2">BTS เปิดตัวอย่างเป็นทางการในเดือนมิถุนายน 2013 และเริ่มต้นเส้นทางดนตรีด้วยแนวคิดเกี่ยวกับความฝันและเสียงของวัยรุ่น</p>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-accent border-4 border-dark z-10 timeline-dot"></div>
+                    <div class="w-full md:w-5/12 md:pl-8">
+                        <div class="md:hidden mb-2">
+                            <h3 class="text-2xl font-bold text-accent">2013 — DEBUT</h3>
+                            <p class="text-sm text-gray-300 mt-2">BTS เปิดตัวอย่างเป็นทางการในเดือนมิถุนายน 2013...</p>
+                        </div>
+                        <img src="https://s.isanook.com/jo/0/ud/476/2384673/bts2.jpg" class="rounded-lg w-full object-cover glass-card p-1">
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center w-full mb-8 relative timeline-item fade-in-up flex-row-reverse">
+                    <div class="w-5/12 text-left pl-8 hidden md:block">
+                        <h3 class="text-2xl font-bold text-blue-400">2015 — HYYH</h3>
+                        <p class="text-sm text-gray-300 mt-2">THE MOST BEAUTIFUL MOMENT IN LIFE เริ่มเล่าเรื่องราวเกี่ยวกับวัยรุ่น ความฝัน ความไม่แน่นอน และการเติบโต</p>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-blue-400 border-4 border-dark z-10 timeline-dot"></div>
+                    <div class="w-full md:w-5/12 md:pr-8 text-right md:text-left">
+                        <div class="md:hidden mb-2 text-left">
+                            <h3 class="text-2xl font-bold text-blue-400">2015 — HYYH</h3>
+                            <p class="text-sm text-gray-300 mt-2">THE MOST BEAUTIFUL MOMENT IN LIFE เริ่มเล่าเรื่องราว...</p>
+                        </div>
+                        <img src="https://candyclover.com/wp-content/uploads/2022/05/2E0D5B12-EADA-46AC-BC30-D0CFE509FDAF.jpeg" class="rounded-lg w-full object-cover glass-card p-1">
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center w-full mb-8 relative timeline-item fade-in-up">
+                    <div class="w-5/12 text-right pr-8 hidden md:block">
+                        <h3 class="text-2xl font-bold text-purple-400">2017 — LOVE YOURSELF</h3>
+                        <p class="text-sm text-gray-300 mt-2">เริ่มต้นยุค LOVE YOURSELF ซึ่งกลายเป็นหนึ่งในซีรีส์ผลงานที่สำคัญที่สุดของวง ขยายฐานแฟนคลับทั่วโลก</p>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-purple-400 border-4 border-dark z-10 timeline-dot"></div>
+                    <div class="w-full md:w-5/12 md:pl-8">
+                        <div class="md:hidden mb-2">
+                            <h3 class="text-2xl font-bold text-purple-400">2017 — LOVE YOURSELF</h3>
+                        </div>
+                        <img src="https://upload.wikimedia.org/wikipedia/en/e/e2/BTS%2C_Love_Yourself_Answer%2C_album_cover.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original" class="rounded-lg w-full object-cover glass-card p-1">
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center w-full mb-8 relative timeline-item fade-in-up flex-row-reverse">
+                    <div class="w-5/12 text-left pl-8 hidden md:block">
+                        <h3 class="text-2xl font-bold text-yellow-400">2020 — DYNAMITE & BE</h3>
+                        <p class="text-sm text-gray-300 mt-2">Dynamite ขึ้นอันดับ 1 Billboard Hot 100 และอัลบั้ม BE ถ่ายทอดความรู้สึกในช่วงเวลาที่ยากลำบากของโลก</p>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-yellow-400 border-4 border-dark z-10 timeline-dot"></div>
+                    <div class="w-full md:w-5/12 md:pr-8 text-right md:text-left">
+                        <div class="md:hidden mb-2 text-left">
+                            <h3 class="text-2xl font-bold text-yellow-400">2020 — DYNAMITE & BE</h3>
+                        </div>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEyEQclIw8ySbLjNsTKjbZP6jYbmzzfCm-yneW5IvTOZAUFFIo_6d5l4KL&s=10" class="rounded-lg w-full object-cover glass-card p-1">
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center w-full mb-8 relative timeline-item fade-in-up">
+                    <div class="w-5/12 text-right pr-8 hidden md:block">
+                        <h3 class="text-2xl font-bold text-gray-300">2022 — PROOF</h3>
+                        <p class="text-sm text-gray-300 mt-2">Proof เป็นอัลบั้ม Anthology ที่รวบรวมเรื่องราวสำคัญของ BTS พร้อมเพลงใหม่ "Yet To Come"</p>
+                    </div>
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-gray-300 border-4 border-dark z-10 timeline-dot"></div>
+                    <div class="w-full md:w-5/12 md:pl-8">
+                        <div class="md:hidden mb-2">
+                            <h3 class="text-2xl font-bold text-gray-300">2022 — PROOF</h3>
+                        </div>
+                        <img src="https://i.pinimg.com/736x/d0/53/f5/d053f58e9f1e84d107b930122cf17e35.jpg" class="rounded-lg w-full object-cover glass-card p-1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. MUSIC & 7. ALBUMS COMBINED VIEW -->
+    <section id="music" class="py-20 bg-black/40">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h4 class="text-accent tracking-widest text-sm font-bold">MUSIC & ALBUMS</h4>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2">ผลงานเพลงและอัลบั้ม</h2>
+                <div class="w-24 h-1 bg-gradient-bts mx-auto mt-4 rounded"></div>
+                <p class="mt-4 text-gray-300">ผลงานที่ทำให้ BTS เป็นที่รู้จักทั่วโลก</p>
+            </div>
+
+            <!-- Music Tabs -->
+            <div class="flex justify-center space-x-4 mb-10">
+                <button onclick="showTab('songs')" id="btn-songs" class="px-6 py-2 rounded-full bg-primary font-bold transition">เพลงสำคัญ</button>
+                <button onclick="showTab('albums-tab')" id="btn-albums" class="px-6 py-2 rounded-full glass-card hover:bg-white/10 font-bold transition">อัลบั้ม</button>
+            </div>
+
+            <!-- Songs Grid -->
+            <div id="songs-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Songs will be injected via JS -->
+            </div>
+
+            <!-- Albums Grid -->
+            <div id="albums-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 hidden">
+                <!-- Albums will be injected via JS -->
+            </div>
+        </div>
+    </section>
+    <!-- 8. ACHIEVEMENTS & 9. GLOBAL IMPACT -->
+    <section id="achievements" class="py-20 relative">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Achievements -->
+                <div class="fade-in-up">
+                    <h4 class="text-accent tracking-widest text-sm font-bold">ACHIEVEMENTS</h4>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6">ความสำเร็จระดับโลก</h2>
+                    <p class="text-gray-300 mb-8 border-l-4 border-primary pl-4">“BTS ไม่ได้ประสบความสำเร็จเพียงในวงการ K-POP แต่ยังสร้างสถิติบนเวทีดนตรีระดับโลก”</p>
+                    
+                    <div class="space-y-4">
+                        <div class="glass-card p-4 rounded-lg flex items-center gap-4">
+                            <div class="text-4xl text-accent font-black">#1</div>
+                            <div>
+                                <h5 class="font-bold">Billboard 200 (2018)</h5>
+                                <p class="text-xs text-gray-400">ศิลปิน K-pop กลุ่มแรกที่ขึ้นอันดับ 1 ด้วย Love Yourself: Tear</p>
+                            </div>
+                        </div>
+                        <div class="glass-card p-4 rounded-lg flex items-center gap-4">
+                            <div class="text-4xl text-blue-400 font-black">#1</div>
+                            <div>
+                                <h5 class="font-bold">Billboard Hot 100 (2020)</h5>
+                                <p class="text-xs text-gray-400">Dynamite สร้างประวัติศาสตร์เพลงเกาหลีใต้</p>
+                            </div>
+                        </div>
+                        <div class="glass-card p-4 rounded-lg flex items-center gap-4">
+                            <div class="text-4xl text-yellow-400 font-black"><i class="fas fa-trophy"></i></div>
+                            <div>
+                                <h5 class="font-bold">Global Icons (2022)</h5>
+                                <p class="text-xs text-gray-400">ได้รับการยอมรับในฐานะศิลปินระดับโลกที่มีอิทธิพลต่อวัฒนธรรม</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-4">* สถิติสามารถเปลี่ยนแปลงได้ตามเวลา ควรตรวจสอบข้อมูลจากแหล่งทางการก่อนเผยแพร่</p>
+                </div>
+
+                <!-- Global Impact -->
+                <div class="fade-in-up" style="animation-delay: 0.2s;">
+                    <h4 class="text-accent tracking-widest text-sm font-bold">BTS & THE WORLD</h4>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6">อิทธิพลทางวัฒนธรรม</h2>
+                    <p class="text-gray-300 mb-8">“ความสำเร็จของ BTS ไม่ได้จำกัดอยู่แค่เพลง แต่ยังเชื่อมโยงกับวัฒนธรรม ภาษา แฟชั่น การเต้น และการสื่อสารกับคนรุ่นใหม่ทั่วโลก”</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="glass-card p-5 rounded-xl hover-scale">
+                            <i class="fas fa-globe text-2xl text-blue-400 mb-2"></i>
+                            <h5 class="font-bold mb-1">K-POP GLOBALIZATION</h5>
+                            <p class="text-xs text-gray-400">ช่วยให้เพลงเกาหลีเข้าถึงผู้ฟังในหลายประเทศทั่วโลก</p>
+                        </div>
+                        <div class="glass-card p-5 rounded-xl hover-scale">
+                            <i class="fas fa-heart text-2xl text-accent mb-2"></i>
+                            <h5 class="font-bold mb-1">LOVE YOURSELF</h5>
+                            <p class="text-xs text-gray-400">แนวคิดเรื่องการรักและยอมรับตัวเองผ่านแคมเปญ LOVE MYSELF</p>
+                        </div>
+                        <div class="glass-card p-5 rounded-xl hover-scale">
+                            <i class="fas fa-seedling text-2xl text-green-400 mb-2"></i>
+                            <h5 class="font-bold mb-1">YOUTH & DREAMS</h5>
+                            <p class="text-xs text-gray-400">ผลงานพูดถึงความฝัน ความกดดัน และการค้นหาตัวตน</p>
+                        </div>
+                        <div class="glass-card p-5 rounded-xl hover-scale">
+                            <i class="fas fa-landmark text-2xl text-primary mb-2"></i>
+                            <h5 class="font-bold mb-1">UN & SOCIAL IMPACT</h5>
+                            <p class="text-xs text-gray-400">มีส่วนร่วมกับกิจกรรมและการสื่อสารในระดับนานาชาติ (UN)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. BTS & ARMY -->
+    <section id="army" class="py-20 bg-gradient-to-b from-transparent to-primary/20 text-center">
+        <div class="container mx-auto px-4 md:px-8 max-w-4xl fade-in-up">
+            <h2 class="text-4xl md:text-5xl font-black mb-6">BTS <span class="text-accent">↔</span> ARMY</h2>
+            <p class="text-lg md:text-xl mb-10 leading-relaxed">“ARMY คือชื่อแฟนคลับอย่างเป็นทางการของ BTS และเป็นชุมชนแฟนเพลงจากทั่วโลกที่สนับสนุนผลงานและกิจกรรมของวง”</p>
+            
+            <div class="flex justify-center flex-wrap gap-4 mb-12">
+                <span class="px-4 py-2 rounded-full glass-card text-sm font-bold">MUSIC</span>
+                <span class="px-4 py-2 rounded-full glass-card text-sm font-bold">SUPPORT</span>
+                <span class="px-4 py-2 rounded-full glass-card text-sm font-bold">COMMUNITY</span>
+                <span class="px-4 py-2 rounded-full glass-card text-sm font-bold">MEMORIES</span>
+                <span class="px-4 py-2 rounded-full glass-card text-sm font-bold">LOVE</span>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl">
+                <h3 class="text-2xl font-bold mb-4">เสียงของ ARMY</h3>
+                <p class="mb-4">เพลงของ BTS เพลงไหนที่คุณชอบที่สุด?</p>
+                <form onsubmit="submitArmyForm(event)" class="flex flex-col sm:flex-row gap-4">
+                    <input type="text" id="army-input" placeholder="พิมพ์ชื่อเพลงหรือข้อความสั้นๆ..." class="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 focus:outline-none focus:border-accent text-white" required>
+                    <button type="submit" class="bg-accent text-white font-bold px-8 py-3 rounded-lg hover:bg-pink-600 transition">ส่งข้อความ</button>
+                </form>
+                <p id="army-response" class="mt-4 text-green-400 hidden font-bold">ขอบคุณที่ร่วมแชร์ความรู้สึก! 💜</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. FUN FACTS (Grid) -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12"><h2 class="text-3xl font-bold text-gradient">DID YOU KNOW?</h2></div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="facts-container">
+                <!-- Filled via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. GALLERY & 13. VIDEO (Placeholders) -->
+    <section id="media" class="py-20 bg-black/60">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-bold">GALLERY & VIDEO</h2>
+                <div class="w-24 h-1 bg-gradient-bts mx-auto mt-4 rounded"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                <img src="https://images.workpointtoday.com/workpointnews/2026/01/13230341/1768320219_980973-workpointtoday.webp" class="w-full h-48 object-cover rounded-lg hover:scale-105 transition cursor-pointer" onclick="openLightbox(this.src)">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUmWP3pf_UoqGj24H5Z6c7LrUYBovrsxQ75CsZWxRXeA&s=10" class="w-full h-48 object-cover rounded-lg hover:scale-105 transition cursor-pointer" onclick="openLightbox(this.src)">
+                <img src="https://i.ytimg.com/vi/iWCGayIOEGQ/maxresdefault.jpg" class="w-full h-48 object-cover rounded-lg hover:scale-105 transition cursor-pointer" onclick="openLightbox(this.src)">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR99-D_yubEBsIlY_mbsunohxB_h10p50cxHnrLy-PPqzZlnIr5j03IKthq&s=10" class="w-full h-48 object-cover rounded-lg hover:scale-105 transition cursor-pointer" onclick="openLightbox(this.src)">
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass-card p-4 rounded-xl flex items-center justify-center h-64 bg-[url('https://placehold.co/800x450/000/fff?text=Dynamite+MV')] bg-cover bg-center relative group">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition rounded-xl"></div>
+                    <i class="fas fa-play-circle text-6xl text-white relative z-10 group-hover:scale-110 transition cursor-pointer"></i>
+                    <p class="absolute bottom-4 left-4 z-10 font-bold">Official MV - Dynamite</p>
+                </div>
+                <div class="glass-card p-4 rounded-xl flex items-center justify-center h-64 bg-[url('https://placehold.co/800x450/000/fff?text=Butter+MV')] bg-cover bg-center relative group">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition rounded-xl"></div>
+                    <i class="fas fa-play-circle text-6xl text-white relative z-10 group-hover:scale-110 transition cursor-pointer"></i>
+                    <p class="absolute bottom-4 left-4 z-10 font-bold">Official MV - Butter</p>
+                </div>
+            </div>
+            <p class="text-center text-gray-500 text-xs mt-6">* ใช้ภาพ Placeholder สำหรับผลงานวิชาการเพื่อป้องกันการละเมิดลิขสิทธิ์</p>
+        </div>
+    </section>
+
+    <!-- 14. QUIZ & 15. FAVORITE MEMBER -->
+    <section id="quiz" class="py-20 relative">
+        <div class="container mx-auto px-4 md:px-8 grid md:grid-cols-2 gap-12">
+            <!-- Quiz -->
+            <div class="glass-card p-8 rounded-2xl">
+                <h2 class="text-3xl font-bold mb-6 text-accent">HOW WELL DO YOU KNOW BTS?</h2>
+                <div id="quiz-container">
+                    <p id="quiz-question" class="text-xl font-bold mb-4">โหลดคำถาม...</p>
+                    <div id="quiz-options" class="space-y-3 mb-6"></div>
+                    <p class="text-sm text-gray-400">ข้อ <span id="quiz-current">1</span>/8</p>
+                </div>
+                <div id="quiz-result" class="hidden text-center">
+                    <h3 class="text-2xl font-bold mb-2">คะแนนของคุณ: <span id="quiz-score" class="text-accent text-4xl">0</span>/8</h3>
+                    <p id="quiz-level" class="text-xl font-bold text-primary mb-6"></p>
+                    <button onclick="resetQuiz()" class="px-6 py-2 bg-gradient-bts rounded-full font-bold">เล่นอีกครั้ง</button>
+                </div>
+            </div>
+
+            <!-- Favorite Member -->
+            <div class="glass-card p-8 rounded-2xl flex flex-col justify-center text-center">
+                <h2 class="text-3xl font-bold mb-6 text-blue-400">WHO IS YOUR FAVORITE?</h2>
+                <div id="fav-selection">
+                    <select id="fav-select" class="w-full bg-dark border border-white/20 rounded-lg px-4 py-3 mb-6 text-white text-lg focus:outline-none focus:border-accent">
+                        <option value="" disabled selected>เลือกสมาชิกคนโปรด...</option>
+                        <option value="RM">RM</option>
+                        <option value="Jin">Jin</option>
+                        <option value="SUGA">SUGA</option>
+                        <option value="j-hope">j-hope</option>
+                        <option value="Jimin">Jimin</option>
+                        <option value="V">V</option>
+                        <option value="Jung Kook">Jung Kook</option>
+                    </select>
+                    <button onclick="selectFav()" class="w-full px-6 py-3 bg-gradient-bts rounded-lg font-bold hover:opacity-90 transition">ยืนยัน</button>
+                </div>
+                <div id="fav-result" class="hidden">
+                    <div class="text-5xl mb-4 animate-bounce">💜</div>
+                    <p class="text-xl">เลือกแล้ว! สมาชิกคนโปรดของคุณคือ <br><span id="fav-name" class="text-3xl font-black text-accent mt-2 block"></span></p>
+                    <button onclick="resetFav()" class="mt-6 px-6 py-2 border border-white/50 rounded-full hover:bg-white/10 text-sm">เลือกใหม่</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 17. ABOUT CREATOR & 18. REFERENCES -->
+    <section id="creator" class="py-20 bg-black/80 border-t border-white/10">
+        <div class="container mx-auto px-4 md:px-8 grid md:grid-cols-2 gap-12">
+            <!-- Creator -->
+            <div>
+                <h2 class="text-3xl font-bold mb-6 text-gradient">ABOUT THE CREATOR</h2>
+                <div class="glass-card p-6 rounded-2xl flex flex-col md:flex-row gap-6 items-center md:items-start">
+                    <img src="https://preview.redd.it/happy-11th-a-r-m-y-anniversary-day-r-bangtan-v0-x7vrfu8qa8bd1.png?width=1218&format=png&auto=webp&s=6a26c858df82638600fc8612399f2804f0cf2701" class="w-32 h-32 rounded-full border-4 border-accent object-cover">
+                    <div>
+                        <h3 class="text-2xl font-bold text-accent">นางสาวดิยานะฮ์ เฟื่องปัญญา</h3>
+                        <p class="text-sm text-gray-400 mb-3">ผู้จัดทำเว็บไซต์</p>
+                        <p class="text-sm mb-4 leading-relaxed">“เว็บไซต์นี้จัดทำขึ้นเพื่อเป็นสื่อการเรียนรู้เกี่ยวกับศิลปิน BTS โดยรวบรวมข้อมูลประวัติ สมาชิก ผลงานเพลง ความสำเร็จ เพื่อฝึกทักษะการออกแบบและพัฒนาเว็บไซต์”</p>
+                        <ul class="text-xs text-gray-400 space-y-1">
+                            <li><i class="fas fa-school w-5"></i> โรงเรียน: มัธยมนาคนาวาอุปถัมภ์</li>
+                            <li><i class="fas fa-chalkboard-user w-5"></i> ระดับชั้น: มัธยมศึกษาปีที่5 ห้อง: 3 เลขที่: 20</li>
+                            <li><i class="fas fa-envelope w-5"></i> อีเมล: diyana.faung@edu.bangkok.go.th</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- References -->
+            <div>
+                <h2 class="text-3xl font-bold mb-6">REFERENCES</h2>
+                <div class="space-y-4">
+                    <div class="glass-card p-4 rounded-lg flex justify-between items-center">
+                        <div>
+                            <h4 class="font-bold">BIGHIT MUSIC</h4>
+                            <p class="text-xs text-gray-400">Official BTS Profile & Discography</p>
+                        </div>
+                        <a href="#" class="text-accent text-sm hover:underline"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <div class="glass-card p-4 rounded-lg flex justify-between items-center">
+                        <div>
+                            <h4 class="font-bold">Billboard & Guinness</h4>
+                            <p class="text-xs text-gray-400">Chart Records & World Records</p>
+                        </div>
+                        <a href="#" class="text-accent text-sm hover:underline"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-4">* ข้อมูลในเว็บไซต์นี้จัดทำขึ้นเพื่อการศึกษา ควรตรวจสอบข้อมูลล่าสุดจากแหล่งข้อมูลทางการก่อนนำไปเผยแพร่</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 19. FOOTER -->
+    <footer class="bg-[#0a0a0a] border-t border-white/5 py-10 text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-black text-gradient tracking-widest mb-2">BTS WORLD</h2>
+            <p class="text-sm text-gray-400 mb-6">“ทำความรู้จัก BTS และเส้นทางแห่งความสำเร็จ”</p>
+            
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#home" class="text-gray-400 hover:text-white transition text-sm">Home</a>
+                <a href="#about" class="text-gray-400 hover:text-white transition text-sm">About</a>
+                <a href="#members" class="text-gray-400 hover:text-white transition text-sm">Members</a>
+                <a href="#music" class="text-gray-400 hover:text-white transition text-sm">Music</a>
+                <a href="#timeline" class="text-gray-400 hover:text-white transition text-sm">Timeline</a>
+                <a href="#quiz" class="text-gray-400 hover:text-white transition text-sm">Quiz</a>
+            </div>
+
+            <div class="flex justify-center space-x-4 mb-8 text-xl">
+                <a href="#" class="text-gray-500 hover:text-accent transition"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="text-gray-500 hover:text-accent transition"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-500 hover:text-accent transition"><i class="fab fa-instagram"></i></a>
+            </div>
+
+            <div class="border-t border-white/10 pt-6 mt-6">
+                <p class="text-sm mb-1">จัดทำโดย <strong>นางสาวดิยานะฮ์ เฟื่องปัญญา</strong></p>
+                <p class="text-xs text-gray-500">Educational Fan Website Project</p>
+                <p class="text-[10px] text-gray-600 mt-2 max-w-2xl mx-auto">“BTS WORLD เป็นเว็บไซต์เพื่อการศึกษาและไม่มีส่วนเกี่ยวข้องอย่างเป็นทางการกับ BTS, BIGHIT MUSIC หรือ HYBE”</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <a href="#home" id="btt" class="fixed bottom-6 right-6 bg-accent text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-pink-600 transition opacity-0 invisible z-40"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Global Modal Structure -->
+    <div id="global-modal" class="fixed inset-0 bg-black/80 z-[100] hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300 backdrop-blur-sm">
+        <div class="glass-card w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl relative" id="modal-content-area">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-white hover:text-accent text-2xl z-10 w-8 h-8 flex items-center justify-center bg-black/50 rounded-full"><i class="fas fa-times"></i></button>
+            <div id="modal-dynamic-content"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 bg-black/95 z-[110] hidden items-center justify-center p-4 cursor-pointer" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl">
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+      
+        // Data for Members
+        const membersData = [
+            { id: 'rm', name: 'RM', fullname: 'Kim Nam-jun (김남준)', thName: 'คิม นัมจุน', role: 'Leader / Rapper', desc: 'RM เป็นหัวหน้าวง BTS และเป็นหนึ่งในสมาชิกที่มีบทบาทสำคัญด้านการแร็ป การแต่งเพลง และการสื่อสารกับผู้ชมระดับนานาชาติ', traits: 'Leadership, Rap, Songwriting, English', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgbwbJNKTt24k5QaS2A3_3xYGhWm6HToYCoJM4Y32Swugqrj5K1N6fbB1wGm93v1zSymAKWpIRuiTe00EntONHVp8G8p2mhEy0KhiuSRw&s=10' },
+            { id: 'jin', name: 'JIN', fullname: 'Kim Seok-jin (김석진)', thName: 'คิม ซอกจิน', role: 'Vocalist', desc: 'Jin เป็นสมาชิกที่มีเสียงร้องโดดเด่นและมีบุคลิกเป็นกันเอง เขายังมีผลงานเพลงเดี่ยวและกิจกรรมด้านดนตรีของตัวเอง', traits: 'Vocal, Visual, Entertainment', img: 'https://s.isanook.com/jo/0/ui/490/2454145/full-qyucaafugn.jpg' },
+            { id: 'suga', name: 'SUGA', fullname: 'Min Yoon-gi (민윤기)', thName: 'มิน ยุนกิ', role: 'Rapper / Producer', desc: 'SUGA มีบทบาทสำคัญด้านการแร็ป การแต่งเพลง และการผลิตเพลง ทั้งในผลงานของ BTS และผลงานเดี่ยว', traits: 'Rap, Production, Songwriting', img: 'https://today-obs.line-scdn.net/0h_BLlQDqAAG1xFRID59V_OklDDBxCcxpkU3FND1YQDlwLOUQ_RHBTDlMSWEFVcRU5UXMaCl1HXQ9fI0YzGQ/w280' },
+            { id: 'jhope', name: 'j-hope', fullname: 'Jung Ho-seok (정호석)', thName: 'จอง โฮซอก', role: 'Rapper / Dancer', desc: 'j-hope เป็นที่รู้จักจากทักษะการเต้น พลังในการแสดง และผลงานด้านดนตรีที่มีเอกลักษณ์', traits: 'Dance, Rap, Performance, Energy', img: 'https://i.pinimg.com/236x/cd/93/5b/cd935bdcad959f7f311647b9f487fa9f.jpg' },
+            { id: 'jimin', name: 'Jimin', fullname: 'Park Ji-min (박지민)', thName: 'พัค จีมิน', role: 'Vocalist / Dancer', desc: 'Jimin มีเอกลักษณ์ด้านเสียงร้อง การเต้น และการแสดงบนเวที ผลงานของเขามีทั้งเพลงของ BTS และผลงานเดี่ยว', traits: 'Vocal, Dance, Performance', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwZCyWb3QDWH78WkenVaKY_M5F0i5zzcTcrUZhHA6XrWHYyR2HHkZUYzSm&s=10' },
+            { id: 'v', name: 'V', fullname: 'Kim Tae-hyung (김태형)', thName: 'คิม แทฮยอง', role: 'Vocalist', desc: 'V มีน้ำเสียงและสไตล์การแสดงที่โดดเด่น รวมถึงมีผลงานเดี่ยวและงานด้านการแสดง', traits: 'Vocal, Acting, Visual', img: 'https://entertain.teenee.com/kpop/img5/916026.jpg' },
+            { id: 'jk', name: 'Jung Kook', fullname: 'Jeon Jung-kook (전정국)', thName: 'จอน จองกุก', role: 'Main Vocalist / Performer', desc: 'Jung Kook เป็นสมาชิกที่มีความสามารถหลากหลาย ทั้งการร้องเพลง การเต้น และการแสดง ผลงานเดี่ยวของเขายังได้รับความนิยมในระดับนานาชาติ', traits: 'Vocal, Dance, Performance', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIG-ZMWeIfw0V7hZkBVYkQ00LJbdi57mixAhNKx5RtfynsYaiMn3Hhi3g&s=10' }
+        ];
+        // Data for Music
+        const musicData = [
+    {
+        title: 'NO MORE DREAM',
+        year: '2013',
+        desc: 'เพลงเปิดตัวที่สะท้อนเรื่องความฝันและความคาดหวังของวัยรุ่น',
+        url: 'https://youtu.be/rBG5L7UsUxA?si=PIHiNmaYLUAUomod'
+    },
+    {
+        title: 'I NEED U',
+        year: '2015',
+        desc: 'เพลงสำคัญจากยุค The Most Beautiful Moment in Life',
+        url: 'https://youtu.be/NMdTd9e-LEI?si=_hG0BIg1ZIji7rRw'
+    },
+    {
+        title: 'FIRE',
+        year: '2016',
+        desc: 'เพลงที่โดดเด่นด้วยพลังของดนตรีและการแสดง',
+        url: 'https://youtu.be/4ujQOR2DMFM?si=I_mlkIXdlRtLoyxy'
+    },
+    {
+        title: 'DNA',
+        year: '2017',
+        desc: 'เพลงจากยุค Love Yourself ที่ช่วยขยายฐานแฟนคลับทั่วโลก',
+        url: 'https://youtu.be/MBdVXkSdhwU?si=POKyRKMDcEId1VKR'
+    },
+    {
+        title: 'FAKE LOVE',
+        year: '2018',
+        desc: 'เพลงหลักจาก Love Yourself: Tear',
+        url: 'https://youtu.be/7C2z4GqqS5E?si=HjQUm7BWw1bioxR9'
+    },
+    {
+        title: 'IDOL',
+        year: '2018',
+        desc: 'เพลงที่นำเสนอความมั่นใจและการยอมรับตัวตน',
+        url: 'https://youtu.be/pBuZEGYXA6E?si=SrWvmxMk73LRsvUZ'
+    },
+    {
+        title: 'BOY WITH LUV',
+        year: '2019',
+        desc: 'เพลงจังหวะสดใสที่ร่วมงานกับ Halsey',
+        url: 'https://youtu.be/XsX3ATc3FbA?si=1ZRUwWpVYXljalqP'
+    },
+    {
+        title: 'ON',
+        year: '2020',
+        desc: 'เพลงจาก Map of the Soul: 7',
+        url: 'https://youtu.be/gwMa6gpoE9I?si=E1HFfpNvKJcoIpwr'
+    },
+    {
+        title: 'DYNAMITE',
+        year: '2020',
+        desc: 'เพลงภาษาอังกฤษที่กลายเป็นหนึ่งในเพลงที่ประสบความสำเร็จสูงสุดของ BTS',
+        url: 'https://youtu.be/gdZLi9oWNZg?si=CIm8FcJ-m-vT0UpU'
+    },
+    {
+        title: 'LIFE GOES ON',
+        year: '2020',
+        desc: 'เพลงที่ส่งข้อความให้กำลังใจในช่วงเวลาที่โลกเผชิญความไม่แน่นอน',
+        url: 'https://youtu.be/-5q5mZbe3V8?si=2NDFokf7510tr4j3'
+    },
+    {
+        title: 'BUTTER',
+        year: '2021',
+        desc: 'เพลงภาษาอังกฤษแนว Pop ที่มีจังหวะสดใสและติดหู',
+        url: 'https://youtu.be/WMweEpGlu_U?si=w1gZD26vd2meXXPG'
+    },
+    {
+        title: 'PERMISSION TO DANCE',
+        year: '2021',
+        desc: 'เพลงที่สื่อถึงการก้าวไปข้างหน้าและการเต้นอย่างมีความสุข',
+        url: 'https://youtu.be/CuklIb9d3fI?si=OE9bR4aGejkJ3cIs'
+    },
+    {
+        title: 'YET TO COME',
+        year: '2022',
+        desc: 'เพลงใหม่จาก Proof ที่สะท้อนการมองย้อนกลับไปและการมองไปยังอนาคต',
+        url: 'https://youtu.be/kXpOEzNZ8hQ?si=nwMXQ3HWANAIn3dj'
+    }
+];
+
+        // Data for Albums (Sample of the 16 requested)
+        const albumsData = [
+            { title: '2 COOL 4 SKOOL', year: '2013', type: 'Single Album', },
+            { title: 'O!RUL8,2?', year: '2013', type: 'Mini Album' },
+            { title: 'SKOOL LUV AFFAIR', year: '2014', type: 'Mini Album' },
+            { title: 'DARK & WILD', year: '2014', type: 'Studio Album' },
+            { title: 'HYYH PT.1', year: '2015', type: 'Mini Album' },
+            { title: 'WINGS', year: '2016', type: 'Studio Album' },
+            { title: 'LOVE YOURSELF: TEAR', year: '2018', type: 'Studio Album' },
+            { title: 'MOTS: 7', year: '2020', type: 'Studio Album' },
+            { title: 'BE', year: '2020', type: 'Studio Album' },
+            { title: 'PROOF', year: '2022', type: 'Anthology Album' }
+        ];
+
+        // Data for Quiz
+        const quizData = [
+            { q: 'BTS มีสมาชิกกี่คน?', options: ['5', '6', '7', '8'], ans: 2 },
+            { q: 'BTS เดบิวต์ในปีใด?', options: ['2010', '2011', '2013', '2015'], ans: 2 },
+            { q: 'ชื่อแฟนคลับของ BTS คืออะไร?', options: ['BLINK', 'ARMY', 'ONCE', 'MOA'], ans: 1 },
+            { q: 'ใครเป็น Leader ของ BTS?', options: ['Jin', 'RM', 'V', 'Jimin'], ans: 1 },
+            { q: 'เพลงใดเป็นเพลงภาษาอังกฤษที่โด่งดังของ BTS?', options: ['Dynamite', 'Spring Day', 'Run', 'Fire'], ans: 0 },
+            { q: 'อัลบั้มใดขึ้นอันดับ 1 Billboard 200 ในปี 2018?', options: ['BE', 'Love Yourself: Tear', 'Proof', 'Wings'], ans: 1 },
+            { q: 'เพลงใดเป็นเพลงจากอัลบั้ม BE?', options: ['Life Goes On', 'DNA', 'Fake Love', 'IDOL'], ans: 0 },
+            { q: 'อัลบั้ม Anthology ของ BTS ที่ออกในปี 2022 คือ?', options: ['Wings', 'BE', 'Proof', 'Persona'], ans: 2 }
+        ];
+
+        const factsData = [
+            "BTS เดบิวต์ในปี 2013", "BTS มีสมาชิก 7 คน", "ARMY คือชื่อแฟนคลับของ BTS", "ศิลปิน K-pop กลุ่มแรกที่ขึ้นอันดับ 1 Billboard 200",
+            "Love Yourself: Tear ขึ้นอันดับ 1 Billboard 200", "Dynamite เป็นเพลงภาษาอังกฤษที่ประสบความสำเร็จมาก", "Butter สร้างสถิติหลายรายการในช่วงเปิดตัว",
+            "Proof เป็นอัลบั้ม Anthology ที่รวบรวมเรื่องราวสำคัญ", "BTS เคยร่วมกิจกรรม LOVE MYSELF", "ผลงานเพลงมีหลากหลายแนว Hip-Hop, Pop, R&B",
+            "สมาชิกทั้ง 7 มีผลงานเดี่ยวที่หลากหลาย", "ชื่อวงมาจาก Bangtan Sonyeondan"
+        ];
+
+        // Render Functions
+        function initRender() {
+            // Render Members
+            const memGrid = document.getElementById('member-grid');
+            membersData.forEach((m, idx) => {
+                memGrid.innerHTML += `
+                    <div class="glass-card rounded-xl overflow-hidden hover-scale group cursor-pointer" onclick="openMemberModal(${idx})">
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="${m.img}" alt="${m.name}" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                            <h3 class="absolute bottom-4 left-4 text-3xl font-black text-white group-hover:text-accent transition">${m.name}</h3>
+                        </div>
+                        <div class="p-5">
+                            <p class="text-sm text-gray-300 mb-1">${m.thName}</p>
+                            <p class="text-xs font-bold text-accent mb-4">${m.role}</p>
+                            <button class="w-full py-2 border border-white/20 rounded-lg text-sm hover:bg-white/10 transition">ดูรายละเอียด</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Render Music
+            const musicGrid = document.getElementById('songs-container');
+            musicData.forEach(song => {
+                musicGrid.innerHTML += `
+                    <div class="glass-card p-5 rounded-xl hover-scale group relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 w-16 h-16 bg-accent/20 rounded-full blur-xl group-hover:bg-accent/40 transition"></div>
+                        <h3 class="text-xl font-bold mb-1 group-hover:text-accent transition">${song.title}</h3>
+                        <p class="text-xs text-primary font-bold mb-3">ปี ${song.year}</p>
+                        <p class="text-sm text-gray-300 mb-4 line-clamp-2">${song.desc}</p>
+                        <div class="flex gap-2">
+                            <a href="${song.url}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               aria-label="เล่นเพลง ${song.title}"
+                               class="song-play-button bg-white text-black w-8 h-8 rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition">
+                                <i class="fas fa-play text-xs"></i>
+                            </a>
+                            <button onclick="openSongModal('${song.title.replace(/'/g, "\\'")}', '${song.year}', '${song.desc.replace(/'/g, "\\'")}', '${song.url}')"
+                                    class="flex-1 text-xs border border-white/20 rounded-full hover:bg-white/10">
+                                รายละเอียด
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Render Albums
+            const albumGrid = document.getElementById('albums-container');
+            albumsData.forEach((a, idx) => {
+                albumGrid.innerHTML += `
+                    <div class="glass-card rounded-xl p-3 text-center hover-scale cursor-pointer" onclick="openAlbumModal(${idx})">
+                        <img src="https://placehold.co/300x300/1a1a2e/ffffff?text=${a.title.replace(/ /g, '+')}" class="w-full aspect-square object-cover rounded-lg mb-3">
+                        <h4 class="font-bold text-sm truncate px-1">${a.title}</h4>
+                        <p class="text-xs text-gray-400">${a.year}</p>
+                    </div>
+                `;
+            });
+
+            // Render Facts
+            const factsGrid = document.getElementById('facts-container');
+            factsData.forEach(fact => {
+                factsGrid.innerHTML += `<div class="glass-card p-4 rounded-lg text-center text-sm font-medium hover:bg-white/5 transition flex items-center justify-center h-24 shadow-md">"${fact}"</div>`;
+            });
+
+            loadQuizQuestion();
+        }
+
+        function openSongModal(title, year, desc, url) {
+            const modal = document.getElementById('global-modal');
+            const content = document.getElementById('modal-dynamic-content');
+
+            content.innerHTML = `
+                <div class="p-8">
+                    <p class="text-accent text-sm font-bold tracking-widest mb-2">MUSIC</p>
+                    <h2 class="text-3xl md:text-4xl font-black mb-2">${title}</h2>
+                    <p class="text-sm text-gray-400 mb-5">ปี ${year}</p>
+                    <p class="text-gray-300 leading-relaxed mb-8">${desc}</p>
+                    <a href="${url}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-bts text-white font-bold hover:scale-105 transition">
+                        <i class="fas fa-play"></i>
+                        เปิดเพลง
+                    </a>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            requestAnimationFrame(() => modal.classList.remove('opacity-0'));
+            document.body.classList.add('hide-scroll');
+        }
+
+        // Interactivity Functions
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function toggleSearch() {
+            const overlay = document.getElementById('search-overlay');
+            if (overlay.classList.contains('hidden')) {
+                overlay.classList.remove('hidden');
+                overlay.classList.add('flex');
+                document.getElementById('search-input').focus();
+                document.body.classList.add('hide-scroll');
+            } else {
+                overlay.classList.add('hidden');
+                overlay.classList.remove('flex');
+                document.body.classList.remove('hide-scroll');
+                document.getElementById('search-result').classList.add('hidden');
+            }
+        }
+
+        function performSearch() {
+            const val = document.getElementById('search-input').value.trim();
+            const res = document.getElementById('search-result');
+            res.classList.remove('hidden');
+            if(val) {
+                res.innerHTML = `ค้นหาข้อมูลเกี่ยวกับ <strong>"${val}"</strong>... <br><span class="text-white text-sm">(นี่คือหน้าต่างจำลองการค้นหา)</span>`;
+            } else {
+                res.innerHTML = "ไม่พบข้อมูล ลองค้นหาด้วยคำอื่น";
+            }
+        }
+
+        let isLightMode = false;
+        function toggleTheme() {
+            isLightMode = !isLightMode;
+            document.body.classList.toggle('light-mode', isLightMode);
+            const icon = document.getElementById('theme-icon');
+            const mIcon = document.getElementById('mobile-theme-icon');
+            if(isLightMode) {
+                icon.className = 'fas fa-sun'; mIcon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon'; mIcon.className = 'fas fa-moon';
+            }
+        }
+
+        function showTab(tab) {
+            document.getElementById('songs-container').classList.toggle('hidden', tab !== 'songs');
+            document.getElementById('albums-container').classList.toggle('hidden', tab !== 'albums-tab');
+            document.getElementById('btn-songs').className = tab === 'songs' ? 'px-6 py-2 rounded-full bg-primary font-bold transition' : 'px-6 py-2 rounded-full glass-card hover:bg-white/10 font-bold transition';
+            document.getElementById('btn-albums').className = tab === 'albums-tab' ? 'px-6 py-2 rounded-full bg-primary font-bold transition' : 'px-6 py-2 rounded-full glass-card hover:bg-white/10 font-bold transition';
+        }
+
+        // Modals
+        const modal = document.getElementById('global-modal');
+        const modalContent = document.getElementById('modal-dynamic-content');
+
+        function openMemberModal(idx) {
+            const m = membersData[idx];
+            modalContent.innerHTML = `
+                <div class="grid md:grid-cols-2 gap-0">
+                    <img src="${m.img}" class="w-full h-full object-cover min-h-[300px]">
+                    <div class="p-8">
+                        <h2 class="text-4xl font-black mb-1">${m.name}</h2>
+                        <h3 class="text-lg text-gray-300 mb-4">${m.fullname} / ${m.thName}</h3>
+                        <div class="inline-block px-3 py-1 bg-accent/20 text-accent rounded-full text-sm font-bold mb-6">${m.role}</div>
+                        <p class="mb-6 leading-relaxed text-sm md:text-base">${m.desc}</p>
+                        <h4 class="font-bold text-sm mb-2 text-primary">จุดเด่น (Key Traits)</h4>
+                        <p class="text-sm text-gray-300 mb-6">${m.traits}</p>
+                        <button onclick="closeModal()" class="px-6 py-2 bg-gradient-bts rounded-full font-bold w-full text-white">ปิดหน้าต่าง</button>
+                    </div>
+                </div>
+            `;
+            showModal();
+        }
+
+        function openAlbumModal(idx) {
+            const a = albumsData[idx];
+            modalContent.innerHTML = `
+                <div class="p-8 text-center flex flex-col items-center">
+                    <img src="https://placehold.co/400x400/1a1a2e/ffffff?text=${a.title.replace(/ /g, '+')}" class="w-64 h-64 object-cover rounded-lg shadow-xl mb-6">
+                    <h2 class="text-3xl font-bold mb-2">${a.title}</h2>
+                    <p class="text-accent font-bold mb-4">ปี ${a.year} • ${a.type}</p>
+                    <p class="text-sm text-gray-300 mb-6 max-w-md mx-auto">ผลงานอัลบั้มคุณภาพจาก BTS ที่แสดงถึงวิวัฒนาการทางดนตรีและเรื่องราวในช่วงเวลานั้นๆ</p>
+                    <button class="px-8 py-3 border-2 border-accent text-accent rounded-full font-bold hover:bg-accent hover:text-white transition">ฟังเพลงอย่างเป็นทางการ</button>
+                </div>
+            `;
+            showModal();
+        }
+
+        function showModal() {
+            modal.classList.remove('hidden');
+            document.body.classList.add('hide-scroll');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.classList.remove('hide-scroll');
+            }, 300);
+        }
+
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.remove('hidden');
+            document.getElementById('lightbox').classList.add('flex');
+            document.body.classList.add('hide-scroll');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+            document.getElementById('lightbox').classList.remove('flex');
+            document.body.classList.remove('hide-scroll');
+        }
+
+        // Quiz Logic
+        let currentQ = 0;
+        let score = 0;
+
+        function loadQuizQuestion() {
+            if(currentQ >= quizData.length) {
+                showQuizResult();
+                return;
+            }
+            const q = quizData[currentQ];
+            document.getElementById('quiz-question').innerText = `${currentQ + 1}. ${q.q}`;
+            document.getElementById('quiz-current').innerText = currentQ + 1;
+            
+            const optionsDiv = document.getElementById('quiz-options');
+            optionsDiv.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                optionsDiv.innerHTML += `<button onclick="checkAnswer(${idx})" class="w-full text-left px-4 py-3 rounded-lg border border-white/20 hover:bg-white/10 transition font-medium">${opt}</button>`;
+            });
+        }
+
+        function checkAnswer(idx) {
+            if(idx === quizData[currentQ].ans) score++;
+            currentQ++;
+            loadQuizQuestion();
+        }
+
+        function showQuizResult() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            const resDiv = document.getElementById('quiz-result');
+            resDiv.classList.remove('hidden');
+            document.getElementById('quiz-score').innerText = score;
+            
+            let level = "";
+            if(score <= 2) level = "BTS Beginner 🌱";
+            else if(score <= 5) level = "BTS Fan 🎵";
+            else if(score <= 7) level = "ARMY Level 💜";
+            else level = "Ultimate ARMY 👑";
+            
+            document.getElementById('quiz-level').innerText = level;
+        }
+
+        function resetQuiz() {
+            currentQ = 0; score = 0;
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            loadQuizQuestion();
+        }
+
+        // Favorite
+        function selectFav() {
+            const val = document.getElementById('fav-select').value;
+            if(val) {
+                document.getElementById('fav-selection').classList.add('hidden');
+                document.getElementById('fav-result').classList.remove('hidden');
+                document.getElementById('fav-name').innerText = val;
+            }
+        }
+        function resetFav() {
+            document.getElementById('fav-select').value = "";
+            document.getElementById('fav-result').classList.add('hidden');
+            document.getElementById('fav-selection').classList.remove('hidden');
+        }
+
+        // Army Form
+        function submitArmyForm(e) {
+            e.preventDefault();
+            const input = document.getElementById('army-input');
+            if(input.value.trim() !== '') {
+                document.getElementById('army-response').classList.remove('hidden');
+                input.value = '';
+                setTimeout(() => document.getElementById('army-response').classList.add('hidden'), 3000);
+            }
+        }
+
+        // Scroll Effects
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            const btt = document.getElementById('btt');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/80', 'backdrop-blur-md', 'shadow-lg');
+                nav.classList.remove('bg-transparent', 'py-4');
+                nav.classList.add('py-2');
+                btt.classList.remove('opacity-0', 'invisible');
+            } else {
+                nav.classList.remove('bg-black/80', 'backdrop-blur-md', 'shadow-lg', 'py-2');
+                nav.classList.add('bg-transparent', 'py-4');
+                btt.classList.add('opacity-0', 'invisible');
+            }
+        });
+
+        // Init
+        document.addEventListener('DOMContentLoaded', initRender);
+
+    </script>
+</body>
+</html>
